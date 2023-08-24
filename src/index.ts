@@ -2,15 +2,16 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import "dotenv/config";
-import router from "./routes/userRoutes";
+import userRouter from "./routes/userRoutes";
+import authRouter from "./routes/authRoutes";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({ credentials: true }));
 app.use(bodyParser.json()); //middleware serializer
-app.use('/api/users', router);
-
+app.use("/api/users", userRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);

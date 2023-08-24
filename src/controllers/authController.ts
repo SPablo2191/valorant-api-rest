@@ -28,7 +28,7 @@ export const register = async (req: express.Request, res: express.Response) => {
       return res.sendStatus(400);
     }
     const salt = bcrypt.genSaltSync();
-    newUser.password = bcrypt.hashSync(newUser.password, salt);
+    newUser.password = bcrypt.hashSync(newUser.password!, salt);
     const user = await create<User>(users, newUser);
 
     return res.status(200).json(user).end();
