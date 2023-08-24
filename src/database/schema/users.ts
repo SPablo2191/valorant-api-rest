@@ -1,6 +1,4 @@
 import { mysqlTable, serial, text, varchar } from "drizzle-orm/mysql-core";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-
 
 export const users = mysqlTable("users", {
   id: serial("id").primaryKey(),
@@ -10,22 +8,7 @@ export const users = mysqlTable("users", {
   password: varchar("password", { length: 256 }),
 });
 
-// Schema for inserting a user - can be used to validate API requests
-export const _insertUserSchema = createInsertSchema(users);
+export type User = Omit<typeof users.$inferSelect, "password">; 
+export type NewUser = Omit<typeof users.$inferInsert, "id">; 
 
-// Schema for selecting a user - can be used to validate API responses
-export const _selectUserSchema = createSelectSchema(users);
 
-export type User = Omit<typeof users.$inferSelect, "password">; // return type when queried
-export type NewUser = typeof users.$inferInsert; // insert type
-
-// export const findAll = async (): Promise<User[]> => {
-//   return db
-//     .select({
-//       id: users.id,
-//       name: users.name,
-//       lastName: users.lastName,
-//       email: users.email,
-//     })
-//     .from(users);
-// };
