@@ -1,6 +1,7 @@
 import { MySqlTable } from "drizzle-orm/mysql-core";
 import { db } from "../database/databaseConfig";
 
-export const findAll = async <Model>(columns: any, table: MySqlTable) => {
-    return db.select(columns).from(table);
-};
+export async function findAll<Model>(table: MySqlTable,columns? : any): Promise<Model[]> {
+  const results = await db.select(columns).from(table);
+  return results as Model[];
+}
