@@ -37,3 +37,35 @@ export const register = async (req: express.Request, res: express.Response) => {
     return res.sendStatus(400);
   }
 };
+
+export const login = async (req: express.Request, res: express.Response) => {
+  try {
+    const user: NewUser = req.body;
+
+    if (!user.email || !user.password) {
+      return res.sendStatus(400);
+    }
+
+    try {
+      const result = await findOneWhere<User>(
+        users,
+        eq,
+        users.email,
+        user.email!
+      );
+
+      if (!result || result.length > 0) {
+        return res.sendStatus(400);
+      }
+    } catch {
+      return res.sendStatus(400);
+    } finally {
+    }
+    return res.json({
+      ok: true,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(400);
+  }
+};
