@@ -8,7 +8,7 @@ export const users = mysqlTable("users", {
   password: varchar("password", { length: 256 }),
 });
 
-export type User = Omit<typeof users.$inferSelect, "password">; 
+export type User = typeof users.$inferSelect; 
 export type NewUser = Omit<typeof users.$inferInsert, "id">; 
 
 

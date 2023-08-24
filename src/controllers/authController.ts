@@ -2,6 +2,8 @@ import express from "express";
 import { NewUser, User, users } from "../database/schema/users";
 import { create, findOneWhere } from "../service/baseService";
 import { eq } from "drizzle-orm";
+import { validatePwd } from "../helpers/validatePwd";
+import { generateJWT } from "../helpers/generateToken";
 const bcrypt = require("bcryptjs");
 
 export const register = async (req: express.Request, res: express.Response) => {
@@ -40,29 +42,34 @@ export const register = async (req: express.Request, res: express.Response) => {
 
 export const login = async (req: express.Request, res: express.Response) => {
   try {
-    const user: NewUser = req.body;
+    const dataRequested: NewUser = req.body;
 
-    if (!user.email || !user.password) {
+    if (!dataRequested.email || !dataRequested.password) {
+      console.log("email or password is null");
       return res.sendStatus(400);
     }
-
+    let user: User;
+    let token: string = "";
     try {
       const result = await findOneWhere<User>(
         users,
         eq,
         users.email,
-        user.email!
+        dataRequested.email!
       );
-
-      if (!result || result.length > 0) {
-        return res.sendStatus(400);
-      }
+      user = result[0];
+      if (!validatePwd(user.password!, dataRequested.password!))
+        return res.status(400).json({ ok: false, msg: "Invalid password" });
+      token = await generateJWT(user.id, user.email!);
     } catch {
       return res.sendStatus(400);
-    } finally {
     }
     return res.json({
       ok: true,
+      uid: user.id,
+      name: `${user.name} ${user.lastName}`,
+      email: user.email,
+      token,
     });
   } catch (e) {
     console.log(e);
