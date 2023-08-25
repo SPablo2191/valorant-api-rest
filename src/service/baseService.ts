@@ -37,3 +37,4 @@ export async function create<Model>(
   const results = await db.insert(table).values(values);
   return results as Model;
 }
+
