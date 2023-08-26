@@ -39,3 +39,17 @@ export async function create<Model>(
 }
 
 
+export async function innerJoin<Model>(
+  table: MySqlTable,
+  innerTable : MySqlTable,
+  operator: BinaryOperator,
+  columnValue: MySqlColumn,
+  innerValue: MySqlColumn,
+  comparisonValue: string | number | boolean
+): Promise<Model[]> {
+  const results = await db
+    .select()
+    .from(table)
+    .innerJoin(innerTable,operator(columnValue, innerValue)).where(operator(columnValue, comparisonValue));
+  return results as Model[];
+}

@@ -1,7 +1,8 @@
 import express from "express";
-import { findAll } from "../service/baseService";
+import { findAll, innerJoin } from "../service/baseService";
 import { User, users } from "../database/schema/users";
-import { db } from "../database/databaseConfig";
+import { agents } from "../database/schema/agents";
+import { eq } from "drizzle-orm";
 
 export const getAllUsers = async (
   _req: express.Request,
@@ -25,12 +26,7 @@ export const getUserProfile = async (
       params: { userId },
     } = _req;
     if (!userId) return res.sendStatus(400);
-    const result = await db.query.users.findMany({
-      with: {
-        agents: true,
-      },
-    });
-    console.log(result);
+    const result = await innerJoin<User>(users,agents,eq,users.id,agents.userId,userId);
     return res.status(200).json(result[0]);
   } catch (e) {
     console.log(e);

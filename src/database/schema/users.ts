@@ -11,10 +11,8 @@ export const users = mysqlTable("users", {
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
-	agents: many(agents),
+  agents: many(agents),
 }));
 
-export type User = typeof users.$inferSelect; 
-export type NewUser = Omit<typeof users.$inferInsert, "id">; 
-
-
+export type User = typeof users.$inferSelect;
+export type NewUser = Omit<typeof users.$inferInsert, "id">;

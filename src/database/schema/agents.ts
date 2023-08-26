@@ -1,6 +1,7 @@
-import { int, mysqlTable, serial, text, varchar } from "drizzle-orm/mysql-core";
+import {  mysqlTable, serial, text, varchar,int } from "drizzle-orm/mysql-core";
 import { users } from "./users";
 import { relations } from "drizzle-orm";
+
 
 export const agents = mysqlTable("agents", {
   id: serial("id").primaryKey(),
