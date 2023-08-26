@@ -49,7 +49,8 @@ MYSQL_ADDON_PORT=
 MYSQL_ADDON_PASSWORD=
 MYSQL_ADDON_URI=
 SECRET_JWT_SEED=
-```
+``` 
+
 3. generar migraciones con drizzle
 para ello se debe realizar el siguiente comando
 ```bash
