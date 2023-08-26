@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1692880757271,
-      "tag": "0000_heavy_hannibal_king",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1692981179703,
-      "tag": "0001_flashy_night_thrasher",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1692981526495,
-      "tag": "0002_common_warbird",
+      "when": 1693012116476,
+      "tag": "0000_chubby_george_stacy",
       "breakpoints": true
     }
   ]

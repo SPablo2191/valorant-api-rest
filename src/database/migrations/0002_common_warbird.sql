@@ -1,1 +1,0 @@
-ALTER TABLE `agents` MODIFY COLUMN `user_id` int NOT NULL;
