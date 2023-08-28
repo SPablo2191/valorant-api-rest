@@ -34,7 +34,7 @@ Para hacer uso del proyecto de manera local es necesario realizar los siguientes
 
 1. Ingresar los siguiente comandos en consola:
 
-```cmd
+```bash
 npm i
 ```
 
