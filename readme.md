@@ -2,7 +2,7 @@
 
 ## Introducción:
 
-Bievenido al backend de Valorant App
+Bievenido al backend de Valorant App!
 
 ## Tabla de contenidos:
 
