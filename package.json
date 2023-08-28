@@ -9,6 +9,9 @@
     "build": "npm install && tsc",
     "start": "node build/index.js"
   },
+  "engines": {
+    "node": ">=16.9"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
