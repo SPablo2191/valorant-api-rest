@@ -18,7 +18,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/user/agents", agentRouter);
 
 app.get("/", (_req, res) => {
-  res.send("Welcome to Valorant API");
+  return res.send("Welcome to Valorant API");
 });
 
 app.listen(PORT, () => {
