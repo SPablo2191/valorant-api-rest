@@ -17,6 +17,9 @@ app.use(body_parser_1.default.json()); //middleware serializer
 app.use("/api/users", userRoutes_1.default);
 app.use("/api/auth", authRoutes_1.default);
 app.use("/api/user/agents", agentRoutes_1.default);
+app.get("/", (_req, res) => {
+    res.send("Welcome to Valorant API");
+});
 app.listen(PORT, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
